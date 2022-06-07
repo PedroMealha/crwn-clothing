@@ -1,10 +1,12 @@
 import { useContext, Fragment } from "react";
 import { CartContext } from "../../contexts/cart.context";
 
+import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+
 import './checkout.styles.scss';
 
 const Checkout = () => {
-	const { cartItems, handleCartItem, totalCount, removeItemFromCart } = useContext(CartContext);
+	const { cartItems, cartTotal } = useContext(CartContext);
 
 	return (
 		<div className="checkout-container">
@@ -18,35 +20,17 @@ const Checkout = () => {
 			</div>
 
 			{
-				cartItems.map(item => {
-					const { id, name, quantity, price, imageUrl } = item;
-
-					const addProductToCart = () => handleCartItem(item, 1);
-					const removeProductToCart = () => handleCartItem(item, -1);
-					const removeProductFromCart = () => removeItemFromCart(item);
-
-					return (
-						<Fragment key={ id }>
-							<div className="separator"></div>
-							<div className="checkout-item">
-								<img src={ imageUrl } alt={ name } />
-								<div>{ name }</div>
-								<div className="checkout-item-quantity">
-									<span className="checkout-item-quantity-decrement" onClick={ removeProductToCart }>–</span>
-									<span className="checkout-item-quantity-number">{ quantity ? quantity : 0 }</span>
-									<span className="checkout-item-quantity-increment" onClick={ addProductToCart }>+</span>
-								</div>
-								<div>${ price }</div>
-								<button className="checkout-item-remove" onClick={ removeProductFromCart }>&times;</button>
-							</div>
-						</Fragment>
-					)
-				})
+				cartItems.map(cartItem =>
+					<Fragment key={ cartItem.id }>
+						<div className="separator"></div>
+						<CheckoutItem cartItem={ cartItem } />
+					</Fragment>
+				)
 			}
 
 			<div className="checkout-total">
 				<div>Total:</div>
-				<div className="checkout-count">${ totalCount }</div>
+				<div className="checkout-count">${ cartTotal }</div>
 			</div>
 		</div>
 	)

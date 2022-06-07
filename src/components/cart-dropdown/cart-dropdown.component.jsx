@@ -8,15 +8,13 @@ import Button from "../button/button.component";
 import './cart-dropdown.styles.scss';
 
 const CartDropdown = () => {
-	const { cartItems } = useContext(CartContext);
+	const { cartItems, isCartOpen, setIsCartOpen } = useContext(CartContext);
+	
+	const toggleIsCartOpen = () => setIsCartOpen(!isCartOpen);
+	
 	const navigate = useNavigate();
-	
-	const goToCheckoutHandler = () => {
-		setIsCartOpen(!isCartOpen);
-		navigate('/checkout');
-		}
-	
-	const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+
+	const goToCheckoutHandler = () => navigate('/checkout');
 
 	return (
 		<div className="cart-dropdown-container">
@@ -25,7 +23,7 @@ const CartDropdown = () => {
 					cartItems.map(item => <CartItem key={ item.id } cartItem={ item } />)
 				}
 			</div>
-			<Button onClick={ goToCheckoutHandler }>CHECKOUT</Button>
+			<Button onClick={ () => { toggleIsCartOpen(); goToCheckoutHandler(); } }>CHECKOUT</Button>
 		</div>
 	)
 }
