@@ -1,31 +1,33 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Title = styled.h3`
-  margin-bottom: 2em;
-`;
-
-export const Separator = styled.div`
-  margin: 1em 0;
-  border-bottom: 1px solid lightgray;
-`;
-
-export const CheckoutLabels = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  align-items: center;
-`;
-
-export const CheckoutTotal = styled.div`
+export const CheckoutContainer = styled.div`
+  width: 55%;
+  min-height: 90vh;
   display: flex;
-  justify-content: flex-end;
-  font-weight: 500;
-  font-size: 1.3em;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto 0;
+`;
 
-  .checkout-count {
-    margin-left: 0.3em;
+export const CheckoutHeader = styled.div`
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid darkgrey;
+`;
+
+export const HeaderBlock = styled.div`
+  text-transform: capitalize;
+  width: 23%;
+
+  &:last-child {
+    width: 8%;
   }
 `;
 
-export const CheckoutContainer = styled.div`
-  margin: 0 auto;
+export const Total = styled.span`
+  margin-top: 30px;
+  margin-left: auto;
+  font-size: 36px;
 `;

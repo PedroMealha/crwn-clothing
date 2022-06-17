@@ -1,43 +1,44 @@
-import { useContext, Fragment } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { useContext } from 'react';
 
-import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import { CartContext } from '../../contexts/cart.context';
+
+import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 
 import {
-	Title,
-	Separator,
-	CheckoutLabels,
-	CheckoutTotal,
-	CheckoutContainer,
-} from "./checkout.styles";
+  CheckoutContainer,
+  CheckoutHeader,
+  HeaderBlock,
+  Total,
+} from './checkout.styles';
 
 const Checkout = () => {
-	const { cartItems, cartTotal } = useContext(CartContext);
+  const { cartItems, cartTotal } = useContext(CartContext);
 
-	return (
-		<CheckoutContainer>
-			<Title>Checkout</Title>
-			<CheckoutLabels>
-				<div>Product</div>
-				<div>Description</div>
-				<div>Quantity</div>
-				<div>Price</div>
-				<div>Remove</div>
-			</CheckoutLabels>
-
-			{ cartItems.map((cartItem) => (
-				<Fragment key={ cartItem.id }>
-					<Separator />
-					<CheckoutItem cartItem={ cartItem } />
-				</Fragment>
-			)) }
-
-			<CheckoutTotal>
-				<div>Total:</div>
-				<div className="checkout-count">${ cartTotal }</div>
-			</CheckoutTotal>
-		</CheckoutContainer>
-	);
+  return (
+    <CheckoutContainer>
+      <CheckoutHeader>
+        <HeaderBlock>
+          <span>Product</span>
+        </HeaderBlock>
+        <HeaderBlock>
+          <span>Description</span>
+        </HeaderBlock>
+        <HeaderBlock>
+          <span>Quantity</span>
+        </HeaderBlock>
+        <HeaderBlock>
+          <span>Price</span>
+        </HeaderBlock>
+        <HeaderBlock>
+          <span>Remove</span>
+        </HeaderBlock>
+      </CheckoutHeader>
+      {cartItems.map((cartItem) => (
+        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+      ))}
+      <Total>Total: ${cartTotal}</Total>
+    </CheckoutContainer>
+  );
 };
 
 export default Checkout;
