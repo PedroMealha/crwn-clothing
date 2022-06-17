@@ -1,73 +1,42 @@
-import styled, { css } from "styled-components";
-
-const QuantityInputStyles = css`
-  border: 1px solid #ccc;
-  user-select: none;
-  height: 100%;
-  line-height: 30px;
-`;
-
-const ArrowStyles = css`
-  display: inline-block;
-  width: 30px;
-  background: #f1f1f1;
-  color: #444;
-  font-weight: bold;
-  cursor: pointer;
-
-  &:active {
-    background: #ddd;
-  }
-`;
+import styled from 'styled-components';
 
 export const CheckoutItemContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  display: flex;
+  min-height: 100px;
+  border-bottom: 1px solid darkgrey;
+  padding: 15px 0;
+  font-size: 20px;
   align-items: center;
 `;
 
-export const BackgroundImage = styled.img`
-  width: auto;
-  max-height: 150px;
-`;
+export const ImageContainer = styled.div`
+  width: 23%;
+  padding-right: 15px;
 
-export const Remove = styled.button`
-  font-size: 1.5em;
-  outline: none;
-  background: none;
-  border: none;
-  width: 1em;
-  height: 1em;
-  cursor: pointer;
-
-  &:hover {
-    color: grey;
+  img {
+    width: 100%;
+    height: 100%;
   }
 `;
 
-export const Quantity = styled.div`
+export const BaseSpan = styled.span`
+  width: 23%;
+`;
+
+export const Quantity = styled(BaseSpan)`
   display: flex;
-  align-items: center;
-  height: 30px;
-  text-align: center;
+`;
+
+export const Arrow = styled.div`
+  cursor: pointer;
 `;
 
 export const Value = styled.span`
-  ${QuantityInputStyles}
-  width: 60px;
-  text-align: center;
+  margin: 0 10px;
 `;
 
-export const Decrement = styled.span`
-  ${QuantityInputStyles};
-  ${ArrowStyles};
-  border-right: none;
-  border-radius: 4px 0 0 4px;
-`;
-
-export const Increment = styled.span`
-  ${QuantityInputStyles};
-  ${ArrowStyles};
-  border-left: none;
-  border-radius: 0 4px 4px 0;
+export const RemoveButton = styled.div`
+  padding-left: 12px;
+  cursor: pointer;
 `;
