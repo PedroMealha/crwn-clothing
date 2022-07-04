@@ -37,6 +37,9 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
   );
 };
 
+const clearCartItem = (cartItems, cartItemToClear) =>
+  cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
+
 const CART_ACTION_TYPES = {
   SET_IS_CART_OPEN: "SET_IS_CART_OPEN",
   SET_CART_ITEMS: "SET_CART_ITEMS",
@@ -71,9 +74,6 @@ const cartReducer = (state, action) => {
       throw new Error(`Unhandled type ${type} in cartReducer`);
   }
 };
-
-const clearCartItem = (cartItems, cartItemToClear) =>
-  cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
 export const CartContext = createContext({
   isCartOpen: false,
@@ -126,7 +126,6 @@ export const CartProvider = ({ children }) => {
   };
 
   const setIsCartOpen = (bool) => {
-    console.log("bool:", bool);
     dispatch(createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, bool));
   };
 
